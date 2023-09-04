@@ -3,3 +3,6 @@ main.py
 cycle
 10-main.c
 q
+__pycache__/
+main.pyc
+
