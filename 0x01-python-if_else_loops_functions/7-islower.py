@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 def islower(c):
-    if c in 'abcdefghijklmnopqrstuvwxyz':
-        return True
+    for letter in 'abcdefghijklmnopqrstuvwxyz':
+        if ord(c) is ord(letter):
+            return True
     return False
