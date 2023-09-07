@@ -12,4 +12,4 @@ if __name__ == "__main__":
         for i in range(1, num):
             print("{}: {}".format(i, argv[i]))
     else:
-        print("{} arguments.".format(num -1))
+        print("{} arguments.".format(num - 1))
