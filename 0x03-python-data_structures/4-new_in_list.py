@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def new_in_list(my_list, idx, element):
-    count = len(my_list)
-    lcopy = my_list[:]
-    if idx > 0 and idx < count:
-        lcopy[idx] = element
-    return lcopy
+    lcp = my_list[:]
+    if idx < 0 or idx >= len(my_list):
+        return lcp
+    lcp[idx] = element
+    return lcp
