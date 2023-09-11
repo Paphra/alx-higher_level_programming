@@ -1,15 +1,13 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    count = len(matrix)
-    if count > 0:
-        for arr in matrix:
-            citems = len(arr)
+    if len(matrix) > 0:
+        for m_item in matrix:
             i = 0
-            for item in arr:
+            for elem in m_item:
                 end = ''
-                if i < citems - 1:
+                if i < len(m_item) - 1:
                     end = ' '
-                print("{num:d}".format(num=item), end=end)
+                print("{:d}".format(elem), end=end)
                 i += 1
             print()
     else:
