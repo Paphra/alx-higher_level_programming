@@ -29,13 +29,14 @@ int len(listint_t **head)
 int is_palindrome(listint_t **head)
 {
 	int i = 0, j;
-	int size = len(head);
+	int size;
 	int *list;
 	listint_t *elem;
 
-	if (size == 0)
+	if (*head == NULL)
 		return (1);
 
+	size = len(head);
 	list = malloc(sizeof(int) * size);
 	if (list == NULL)
 		return (0);
