@@ -39,6 +39,7 @@ int is_palindrome(listint_t **head)
 	list = malloc(sizeof(int) * size);
 	if (list == NULL)
 		return (0);
+
 	elem = *head;
 	while (elem != NULL)
 	{
@@ -51,7 +52,6 @@ int is_palindrome(listint_t **head)
 	j = size - 1;
 	while (i <= j)
 	{
-		/* printf("== %d <> %d ==\n", list[i], list[j]); checking one two*/
 		if (list[i] != list[j])
 			return (0);
 		i++;
