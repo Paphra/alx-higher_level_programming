@@ -8,4 +8,6 @@ def best_score(a_dictionary):
         if v > score:
             key = k
         score = v
+    if key == '':
+        return None
     return key
