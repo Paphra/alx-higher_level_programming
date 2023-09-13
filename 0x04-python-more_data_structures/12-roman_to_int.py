@@ -10,7 +10,7 @@ def roman_to_int(roman_string):
         "M": 1000
     }
     total = 0
-    if type(roman_string) is not str or roman_string is None:
+    if type(roman_string) is not type("") or roman_string is None:
         return total
     prev = ''
     for i in roman_string:
