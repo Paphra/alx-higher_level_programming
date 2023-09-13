@@ -10,8 +10,8 @@ def roman_to_int(roman_string):
         "M": 1000
     }
     total = 0
-    if type(roman_string) is not type("") or roman_string is None:
-        return total
+    if type(roman_string) is not str or roman_string is None:
+        return 0
     prev = ''
     for i in roman_string:
         total += my_d.get(i)
