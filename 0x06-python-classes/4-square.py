@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""3-square module
+"""4-square module
 
 Creating the Square classs
 Todo:
@@ -17,7 +17,7 @@ class Square:
         __size (int): the size of the square
     Todo:
         *add a public instance method area
-
+        *add public setter and getter methods for size
     """
 
     def __init__(self, size=0):
@@ -48,3 +48,27 @@ class Square:
         result = self.__size * self.__size
 
         return (result)
+
+    def size(self):
+        """size method
+
+        Get the size of the square from the private variable
+
+        """
+
+        return self.__size
+
+    def size(self, value=0):
+        """size: setting
+
+        Setting the size private attribute a given value
+        Args:
+            value: the value of the new size
+
+        """
+
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value

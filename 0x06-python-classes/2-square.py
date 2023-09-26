@@ -18,8 +18,6 @@ class Square:
 
     """
 
-    __size = 0
-
     def __init__(self, size=0):
         """__init__ method.
 
