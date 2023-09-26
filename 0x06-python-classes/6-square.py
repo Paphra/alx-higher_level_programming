@@ -114,8 +114,9 @@ class Square:
             print()
         else:
             for i in range(self.__size):
-                for k in range(self.__position[1]):
-                    print(' ', end='')
+                if self.__position[1] <= 0:
+                    for k in range(self.__position[0]):
+                        print(' ', end='')
                 for j in range(self.__size):
                     print('#', end='')
                 print()
