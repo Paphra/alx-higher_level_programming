@@ -4,6 +4,8 @@ Contains a magic class
 """
 
 
+import math
+
 class MagicClass:
     """class MagicClass
     Calculates the area and circumfrence of a circle
