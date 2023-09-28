@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""6-square module
+"""101-square module
 
 Creating the Square classs
 Todo:
