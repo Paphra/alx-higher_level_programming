@@ -1,0 +1,63 @@
+Usage of add_integer
+====================
+
+This function Returns the sum of two integers
+or even floats
+
+Arguments
+===========
+It must take atleast 1 argument, a and an optional b
+::
+
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+	No arguments
+	>>> add_integer()
+	Traceback (most recent call last):
+	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+	Only one argument
+	>>> add_integer(2)
+	100
+
+Integers
+=========
+
+```add_integer``` returns the normal addition
+
+::
+	Two positives
+	>>> add_integer(1, 2)
+	3
+
+	Negative integers
+	>>> add_integer(-20, 10)
+	-10
+
+Floats
+======
+Must return an integer result, because floats are cast to int
+::
+	>>> add_integer(2.3, 6.5)
+	8
+
+Non-Integers/Floats
+===================
+::
+	a is a strimg
+	>>> add_integer('h', 20)
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	b is a string
+	>>> add_integer(23, 'll')
+	Traceback (most recent call last):
+	TypeError: b must be an integer
+
+	both a and b are strings
+	>>> add_integer('hh', 'll')
+	Traceback (most recent call last):
+        TypeError: a must be an integer
+
+=====
+End of Tests
