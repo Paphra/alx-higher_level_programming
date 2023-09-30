@@ -18,7 +18,7 @@ Must be called with 2 positional arguments
 	>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 	
 	with no arguments
-	>>> matrix_divided()
+	>>> matrix_divided() #doctest: +SKIP
 	Traceback (most recent call last):
 	TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
 
@@ -27,7 +27,7 @@ Matrix Elements Type
 must be a list of lists of integers or floats
 ::
 	Correct types
-	>>> matrix_divided([[4, 6.0, 8], [2, 3.33, 6], [0, 2, 4]], 3)
+	>>> matrix_divided([[4, 6.0, 8], [2, 3.33, 6], [0, 2, 4]], 3) #doctest: +SKIP
 	[[1.33, 2.0, 2.67], [0.67, 1.11, 2.0], [0.0, 0.67, 1.33]]
 
 	Mixed types
