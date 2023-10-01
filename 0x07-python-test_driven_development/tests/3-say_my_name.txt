@@ -1,0 +1,54 @@
+Usage of ```say_my_name```
+==========================
+
+prints My name is <first name> <last name>
+
+Args:
+	first_name (str): required positional string
+	last_name (str): optional string
+		default=""
+
+Arguments
+==========
+::
+	importing
+	>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+	no args
+	>>> say_my_name()
+	Traceback (most recent call last):
+	TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+	only one argument
+	>>> say_my_name('Epaphradito')
+	My name is Epaphradito 
+
+	empty strings
+	>>> say_my_name('', '')
+	My name is  
+
+Type tests
+===========
+first_name and last_name must be strings
+::
+	all strings
+	>>> say_my_name("Epaphradito", "Lugayavu")
+	My name is Epaphradito Lugayavu
+
+	first_name is string, last_name is not
+	>>> say_my_name('Epa', 12)
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
+
+	larst_name is string, last_name is not
+        >>> say_my_name(12, 'Lugayavu')
+        Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+	both are nkt strings
+	>>> say_my_name(False, 3.4)
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+End of tests
+=============
