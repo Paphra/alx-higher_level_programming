@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-2-rectangle module
+4-rectangle module
 
 Contains a class Rectangle that defines a rectangle with dimensions
 """
@@ -13,10 +13,16 @@ class Rectangle:
     Attr:
         width (int): default 0, private with getter, setter
         height (int): default 0, private witg getter, setter
+
     Methods:
+        __init__(): for initialization
+        __str__(): for a string representation
+        __repr__(): returns string representation for recreation
+
         area(): returns the area of the rectangle
         perimeter(): returns the perimeter of rectangle,
             0 if one or all dimensions = 0
+
     """
 
     def __init__(self, width=0, height=0):
@@ -26,6 +32,31 @@ class Rectangle:
 
         self.width = width
         self.height = height
+
+    def __str__(self):
+        """
+        Returns a printable string (rectangle with #)
+        """
+
+        rect = ""
+        if self.__width == 0 or self.__height == 0:
+            return rect
+        for i in range(self.__height):
+            for j in range(self.__width):
+                rect += '#'
+            if i < self.__height - 1:
+                rect += '\n'
+
+        return rect
+
+    def __repr__(self):
+        """
+        Returns a canonical string of the class for recreation
+        """
+
+        return "Rectangle({:d}, {:d})".format(
+            self.__width, self.__height
+        )
 
     @property
     def width(self):

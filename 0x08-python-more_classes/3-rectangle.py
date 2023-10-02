@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-1-rectangle module
+3-rectangle module
 
 Contains a class Rectangle that defines a rectangle with dimensions
 """
