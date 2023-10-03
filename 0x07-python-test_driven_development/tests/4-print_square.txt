@@ -1,0 +1,69 @@
+USAGE of print_square()
+========================
+
+A function that prints a square with the character #.
+
+Args:
+	size (int): an integer >= 0
+
+Argument Tests
+==============
+Required integer
+::
+	impprting the function
+	>>> print_square = __import__('4-print_square').print_square
+
+	no arguments
+	>>> print_square()
+	Traceback (most recent call last):
+	TypeError: print_square() missing 1 required positional argument: 'size'
+
+	with more than 1 argument
+	>>> print_square(2, 4)
+	Traceback (most recent call last):
+	TypeError: print_square() takes 1 positional argument but 2 were given
+
+	with correct argument
+	>>> print_square(2)
+	##
+	##
+
+Type Tests
+==========
+Must be an integer
+::
+	with text
+	>>> print_square('two')
+	Traceback (most recent call last):
+	TypeError: size must be an integer
+
+	with integer surrounded with quotes
+	>>> print_square('2')
+	Traceback (most recent call last):
+	TypeError: size must be an integer
+
+	with float
+	>>> print_square(2.4)
+	Traceback (most recent call last):
+	TypeError: size must be an integer
+
+	with correct integer
+	>>> print_square(4)
+	####
+	####
+	####
+	####
+
+Integer tests
+=============
+must be greater or equal to 0
+::
+	with negative
+	>>> print_square(-4)
+	Traceback (most recent call last):
+	ValueError: size must be >= 0
+
+	trying with imaginary numbers
+	>>> print_square(4j)
+	Traceback (most recent call last):
+	TypeError: size must be an integer
