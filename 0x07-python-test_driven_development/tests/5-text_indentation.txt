@@ -1,0 +1,61 @@
+Usage ```text_indentation```
+=============================
+
+A function that prints a text with 2 new lines
+after each of these characters: ., ? and :
+
+Args:
+	text (str): a required string
+
+Arguments Tests
+===============
+One required argument
+::
+	importing the function
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+	no arguments
+	>>> text_indentation()
+	Traceback (most recent call last):
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+	more than 1 argument
+	>>> text_indentation('Me and you', 'come')
+	Traceback (most recent call last):
+	TypeError: text_indentation() takes 1 positional argument but 2 were given
+
+	one argument (str)
+	>>> text_indentation('Hello, Paphra: How are you?!')
+	Hello, Paphra:
+	<BLANKLINE>
+	How are you?
+	<BLANKLINE>
+	!
+
+Argument types
+===============
+```text``` must be a string
+::
+	try numbers, floats and integers, booleans
+	>>> text_indentation(2)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+	>>> text_indentation(43.55)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+	>>> text_indentation(False)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+	trying double quoted strings (nexted quotes)
+	>>> text_indentation("'Some words are bad. And the point: is to make it? Why?'") #doctest: +REPORT_NDIFF
+	'Some words are bad.
+	<BLANKLINE>
+	And the point:
+	<BLANKLINE>
+	is to make it?
+	<BLANKLINE>
+	Why?
+	<BLANKLINE>
+	'
+
