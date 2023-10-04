@@ -13,7 +13,7 @@ class LockedClass:
         Only allow first_name
         """
 
-        if name == 'first_name':
+        if name == 'first_name' and hasattr(self, name):
             super().__setattr__(name, value)
         else:
             raise AttributeError(
