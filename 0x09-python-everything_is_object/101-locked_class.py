@@ -13,6 +13,8 @@ class LockedClass:
         Only allow first_name
         """
 
+        __slots__ = ('first_name',)
+
         if name == 'first_name' or hasattr(self, name):
             super().__setattr__(name, value)
         else:
