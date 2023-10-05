@@ -6,20 +6,4 @@
 class LockedClass:
     """Locked class
     """
-
-    def __setattr__(self, name, value):
-        """ set attribute method
-
-        Only allow first_name
-        """
-
-        __slots__ = ('first_name',)
-
-        if name == 'first_name' or hasattr(self, name):
-            super().__setattr__(name, value)
-        else:
-            raise AttributeError(
-                "'{}' object has no attribute '{}'".format(
-                    type(self).__name__, name
-                )
-            )
+    __slots__ = ['first_name']
