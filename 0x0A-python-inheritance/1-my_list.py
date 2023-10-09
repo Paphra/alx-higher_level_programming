@@ -17,4 +17,5 @@ class MyList(list):
         Assuming they are all integers
         """
 
+        self.sort()
         print(sorted(self))
