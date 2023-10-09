@@ -11,14 +11,6 @@ class MyList(list):
     Prints a sorted list with print_sorted
     """
 
-    def __init__(self):
-        """Initializes the class variables
-
-        Only calls super()
-        """
-
-        super().__init__(self)
-
     def print_sorted(self):
         """prints a sorted list
 
