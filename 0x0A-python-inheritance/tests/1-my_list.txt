@@ -1,0 +1,20 @@
+How to use the MyList class
+
+It prints a list which is sorted
+
+Tests
+=====
+
+>>> MyList = __import__('1-my_list').MyList
+>>> ml = MyList()
+>>> ml.append(1)
+>>> print(ml)
+[1]
+>>> ml.append(2)
+>>> print(ml)
+[1, 2]
+>>> ml.append(0)
+>>> print(ml)
+[1, 2, 0]
+>>> ml.print_sorted()
+[0, 1, 2]
