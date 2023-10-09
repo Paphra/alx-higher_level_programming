@@ -12,11 +12,17 @@ class MyList(list):
     """
 
     def __init__(self):
-        """ Initializes the class variables """
+        """Initializes the class variables
+
+        Only calls super()
+        """
 
         super().__init__(self)
 
     def print_sorted(self):
-        """ prints a sorted list """
+        """prints a sorted list
+
+        Assuming they are all integers
+        """
 
         print(sorted(self))
