@@ -16,7 +16,7 @@ filename = 'add_item.json'
 if len(sys.argv) > 1:
     try:
         my_list = loadJSON(filename)
-    except:
+    except Exception:
         pass
     if type(my_list) is list:
         for i in range(1, len(sys.argv)):
