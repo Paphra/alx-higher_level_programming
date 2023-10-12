@@ -18,8 +18,8 @@ def print_stats(counts, total_size):
             print("{}: {}".format(code, counts[code]))
 
 
-pattern = r'(?P<ip>[\d\.]+) - \[.*\] "GET /projects/260 HTTP/1.1"' \
-        ' (?P<status>\d+) (?P<size>\d+)'
+pattern = r'(?P<ip>[\d\.]+) - \[.*\] "GET /projects/260 HTTP/1.1" ' + \
+    r'(?P<status>\d+) (?P<size>\d+)'
 compiled = re.compile(pattern)
 
 # Counters
