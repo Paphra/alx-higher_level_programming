@@ -105,6 +105,25 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 2, 3, 3, 200)
         with self.assertRaises(ValueError, msg='width must be > 0'):
             r.width = -2
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
+            r.x = -3
+        r.id = 3.4
+        self.assertEqual(r.id, 3.4)
+        r.id = float('inf')
+        self.assertEqual(r.id, float('inf'))
+
+    def test_area(self):
+        """Test the return of the correct area of the rect
+
+        Task #4
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(5, 6)
+        self.assertEqual(r.area(), 30)
+        r.width = 3
+        r.height = 4
+        self.assertEqual(r.area(), 12)
 
 
 if __name__ == '__main__':
