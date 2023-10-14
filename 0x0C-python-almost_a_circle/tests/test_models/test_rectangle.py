@@ -133,25 +133,25 @@ class TestRectangle(unittest.TestCase):
         
         from models.rectangle import Rectangle
         r = Rectangle(5, 3)
-        expected = "#####\n#####\n#####"
+        expected = "#####\n#####\n#####\n"
         saved = sys.stdout
         try:
             out = StringIO()
             sys.stdout = out
             r.display()
-            output = out.getvalue().strip()
+            output = out.getvalue()
             self.assertEqual(output, expected)
         finally:
             sys.stdout = saved
         r.width = 4
         r.height = 5
-        expected = "####\n####\n####\n####\n####"
+        expected = "####\n####\n####\n####\n####\n"
         saved = sys.stdout
         try:
             out = StringIO()
             sys.stdout = out
             r.display()
-            output = out.getvalue().strip()
+            output = out.getvalue()
             self.assertEqual(output, expected)
         finally:
             sys.stdout = saved
@@ -182,6 +182,36 @@ class TestRectangle(unittest.TestCase):
             sys.stdout = out
             print(r)
             output = out.getvalue().strip()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
+
+    def test_display_with_xy(self):
+        """Test how the xy are handled by the display method
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(4, 3, 2, 3)
+        expected = "\n\n\n  ####\n  ####\n  ####\n"
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            r.display()
+            output = out.getvalue()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
+
+        r.x = 3
+        r.y = 0
+        expected = "   ####\n   ####\n   ####\n"
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            r.display()
+            output = out.getvalue()
             self.assertEqual(output, expected)
         finally:
             sys.stdout = saved
