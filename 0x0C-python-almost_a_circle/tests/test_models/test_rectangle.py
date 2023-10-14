@@ -6,6 +6,8 @@ Used to test the Rectangle class that inherits from Base
 
 
 import unittest
+import sys
+from io import StringIO
 from importlib import reload
 from models import base
 from models import rectangle
@@ -124,6 +126,65 @@ class TestRectangle(unittest.TestCase):
         r.width = 3
         r.height = 4
         self.assertEqual(r.area(), 12)
+
+    def test_display(self):
+        """Test the out of the Display function
+        """
+        
+        from models.rectangle import Rectangle
+        r = Rectangle(5, 3)
+        expected = "#####\n#####\n#####"
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            r.display()
+            output = out.getvalue().strip()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
+        r.width = 4
+        r.height = 5
+        expected = "####\n####\n####\n####\n####"
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            r.display()
+            output = out.getvalue().strip()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
+
+    def test_str_magic_method(self):
+        """Tests the output of the __str__ method
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(3, 2, 0, 0, 20)
+        expected = "[Rectangle] (20) 0/0 - 3/2"
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            print(r)
+            output = out.getvalue().strip()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
+        r.id = 1.4
+        r.width = 10
+        r.y = 3
+        expected = '[Rectangle] (1.4) 0/3 - 10/2'
+        saved = sys.stdout
+        try:
+            out = StringIO()
+            sys.stdout = out
+            print(r)
+            output = out.getvalue().strip()
+            self.assertEqual(output, expected)
+        finally:
+            sys.stdout = saved
 
 
 if __name__ == '__main__':
