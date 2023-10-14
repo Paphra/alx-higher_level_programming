@@ -77,7 +77,34 @@ class TestRectangle(unittest.TestCase):
 
         This implementation is from Task #3
         """
-        pass
+
+        from models.rectangle import Rectangle
+        r = Rectangle(1, 2, 0, 0, 2)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            r.width = 'w'
+        with self.assertRaises(TypeError, msg='height must be an integer'):
+            r.height = 'h'
+        with self.assertRaises(TypeError, msg='x must be an integer'):
+            r.x = 'x'
+        with self.assertRaises(TypeError, msg='y must be an integer'):
+            r.y = 'y'
+        with self.assertRaises(TypeError, msg='width must be an inter'):
+            r.width = 0.3
+        with self.assertRaises(TypeError, msg='height must be an intger'):
+            r.height = True
+        with self.assertRaises(TypeError, msg='x must be an integer'):
+            r.x = float('inf')
+        r.id = 5.6
+        self.assertEqual(r.id, 5.6)
+
+    def test_values_checks(self):
+        """Test the different value ranges
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(1, 2, 3, 3, 200)
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            r.width = -2
 
 
 if __name__ == '__main__':
