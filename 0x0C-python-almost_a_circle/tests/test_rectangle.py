@@ -46,6 +46,38 @@ class TestRectangle(unittest.TestCase):
         from models.rectangle import Rectangle
         with self.assertRaises(TypeError):
             rect = Rectangle()
+        with self.assertRaises(TypeError):
+            rect = Rectangle(2)
+        rect = Rectangle(3, 2)
+        self.assertEqual(type(rect), Rectangle)
+        self.assertEqual(rect.id, 1)
+        self.assertEqual(rect.width, 3)
+        self.assertEqual(rect.height, 2)
+        self.assertEqual(rect.x, 0)
+        self.assertEqual(rect.y, 0)
+
+    def test_getters_and_setters(self):
+        """Test the getters and setters to the intance of the class
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(3, 4, 5, 6, 10)
+        self.assertEqual(r.id, 10)
+        self.assertEqual(r.x, 5)
+        r.width = 20
+        self.assertEqual(r.width, 20)
+        r.height = 10
+        self.assertEqual(r.height, 10)
+        r.id = 14
+        self.assertEqual(r.id, 14)
+
+    def test_data_types(self):
+        """Test data types of different kinds being set to
+        properties of specific types
+
+        This implementation is from Task #3
+        """
+        pass
 
 
 if __name__ == '__main__':
