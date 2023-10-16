@@ -61,3 +61,32 @@ class TestSquare(unittest.TestCase):
         s.y = 2
         expected = '\n\n  ###\n  ###\n  ###\n'
         TR.ioRun(self, s.display, expected)
+
+    def test_square_size_updates_raises(self):
+        """Test exception raising following the Rectangle's
+        """
+
+        from models.square import Square
+        s = Square(2)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            s.size = 'w'
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            s.size = 0
+
+    def test_square_update(self):
+        """Tests the update method of the Square class
+        """
+
+        from models.square import Square
+        s = Square(10, 2, 2)
+        exp = '[Square] (1) 2/2 - 10\n'
+        TR.ioRun(self, s, exp, p=True)
+        s.update(10, 3, 3)
+        exp = '[Square] (10) 3/2 - 3\n'
+        TR.ioRun(self, s, exp, p=True)
+        s.update(5, 2, size=5)
+        exp = '[Square] (5) 3/2 - 2\n'
+        TR.ioRun(self, s, exp, p=True)
+        s.update(size=4, x=2, y=3)
+        exp = '\n\n\n  ####\n  ####\n  ####\n  ####\n'
+        TR.ioRun(self, s.display, exp)
