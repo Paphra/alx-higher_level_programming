@@ -7,6 +7,7 @@ Used to test the Rectangle class that inherits from Base
 
 import unittest
 import sys
+import json
 from io import StringIO
 from importlib import reload
 from models import base
@@ -238,6 +239,23 @@ class TestRectangle(unittest.TestCase):
         r.update(**dic)
         exp = '[Rectangle] (1) 1/9 - 10/2\n'
         self.ioRun(r, exp, p=True)
+
+    def test_base_to_json_string(self):
+        """Tests to_json_string method on the Base class
+        """
+
+        from models.square import Square
+        from models.base import Base
+        s = Square(4)
+        s_dict = s.to_dictionary()
+        json_dict = Base.to_json_string([s_dict])
+        self.assertEqual(json.loads(json_dict)[0], s_dict)
+        self.assertEqual(type(json_dict), str)
+        json_dict = Base.to_json_string(None)
+        self.assertEqual(type(json.loads(json_dict)), list)
+        self.assertEqual(json_dict, "[]")
+        json_dict2 = Base.to_json_string([])
+        self.assertTrue(json_dict == json_dict2)
 
 
 if __name__ == '__main__':

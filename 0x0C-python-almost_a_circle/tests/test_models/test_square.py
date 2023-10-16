@@ -88,3 +88,22 @@ class TestSquare(unittest.TestCase):
         s.update(size=4, x=2, y=3)
         exp = '\n\n\n  ####\n  ####\n  ####\n  ####\n'
         TR.ioRun(self, s.display, exp)
+
+    def test_square_to_dict(self):
+        """Tests the to_dictionary method of the square class
+        """
+        from models.square import Square
+        s = Square(20, 3, 3)
+        dic = s.to_dictionary()
+        self.assertEqual(dic, {
+            'id': 1,
+            'size': 20,
+            'x': 3,
+            'y': 3
+        })
+        self.assertEqual(type(dic), dict)
+        TR.ioRun(self, s, '[Square] (1) 3/3 - 20\n', p=True)
+        s2 = Square(2)
+        s2.update(**dic)
+        TR.ioRun(self, s2, '[Square] (1) 3/3 - 20\n', p=True)
+        self.assertFalse(s == s2)
