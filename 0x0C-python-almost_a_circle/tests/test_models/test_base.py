@@ -18,9 +18,7 @@ class TestBaseClass(unittest.TestCase):
         reload(base)
 
     def test_class_dict(self):
-        """===== Base Tests =====
-
-        Test whether the normal call works without arguments
+        """Test whether the normal call works without arguments
         """
 
         from models.base import Base

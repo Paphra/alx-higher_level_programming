@@ -27,9 +27,7 @@ class TestSquare(unittest.TestCase):
         reload(square)
 
     def test_square_initialization(self):
-        """===== Square Tests =====
-
-        Tests the initialization of the Square class
+        """Tests the initialization of the Square class
         """
 
         from models.square import Square

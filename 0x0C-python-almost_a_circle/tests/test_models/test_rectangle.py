@@ -25,9 +25,7 @@ class TestRectangle(unittest.TestCase):
         reload(rectangle)
 
     def test_rectangle_dict(self):
-        """===== Rectangle Tests =====
-
-        Test the __dict__ contents
+        """Test the __dict__ contents
         """
 
         from models.rectangle import Rectangle
@@ -220,6 +218,26 @@ class TestRectangle(unittest.TestCase):
         r.update(10, 20, width=25)
         expected = '[Rectangle] (10) 3/10 - 20/20\n'
         self.ioRun(r, expected, p=True)
+
+    def test_rectangle_to_dict(self):
+        """Test the conversion of the rectangle to a Dictionary
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(10, 2, 1, 9)
+        dic = r.to_dictionary()
+        self.assertEqual(type(dic), dict)
+        self.assertEqual(dic, {
+            'id': 1,
+            'width': 10,
+            'height': 2,
+            'x': 1,
+            'y': 9
+        })
+        r = Rectangle(1, 1)
+        r.update(**dic)
+        exp = '[Rectangle] (1) 1/9 - 10/2\n'
+        self.ioRun(r, exp, p=True)
 
 
 if __name__ == '__main__':
