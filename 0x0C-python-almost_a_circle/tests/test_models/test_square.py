@@ -7,6 +7,8 @@ Contains the test to the Square Class
 
 import unittest
 import sys
+import json
+import os
 from importlib import reload
 from models import base
 from models import rectangle
@@ -107,3 +109,47 @@ class TestSquare(unittest.TestCase):
         s2.update(**dic)
         TR.ioRun(self, s2, '[Square] (1) 3/3 - 20\n', p=True)
         self.assertFalse(s == s2)
+
+    def test_base_save_to_file(self):
+        """Tests the Base class method that writes a list of instances
+
+        to a file
+        """
+
+        from models.square import Square
+        from models.base import Base
+        s1 = Square(3)
+        s2 = Square(2)
+        s1_json = s1.to_dictionary()
+        s2_json = s2.to_dictionary()
+        json_string = Base.to_json_string([s1_json, s2_json])
+        exp_json = [
+            {'id': 1, 'size': 3, 'x': 0, 'y': 0},
+            {'id': 2, 'size': 2, 'x': 0, 'y': 0}
+        ]
+        Square.save_to_file([s1, s2])
+        with self.assertRaises(FileNotFoundError):
+            with open('Rectangle.json', 'r') as file:
+                pass
+        f_name = '{}.json'.format(Square.__name__)
+        with open(f_name, 'r') as f:
+            contents = f.read()
+            TR.ioRun(self, contents, '{}\n'.format(json_string), p=True)
+            self.assertEqual(contents, json_string)
+            self.assertEqual(json.loads(contents), exp_json)
+        os.remove(f_name)
+
+    def test_base_from_json_string(self):
+        """Tests from_json_string method of Base class
+        """
+
+        from models.square import Square
+        i_list = [
+            {'id': 4, 'size': 5},
+            {'id': 2, 'size': 3}
+        ]
+        i_json = Square.to_json_string(i_list)
+        o_list = Square.from_json_string(i_json)
+        self.assertEqual(json.loads(i_json), o_list)
+        self.assertEqual(type(o_list), list)
+        self.assertEqual(i_list, o_list)
