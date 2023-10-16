@@ -145,11 +145,15 @@ class Rectangle(Base):
                 height=self.__height)
         return rep
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Update the attribute values of the rectangle
         """
 
         cargs = len(args)
-        attrs = ['id', 'width','height', 'x', 'y']
-        for i in range(cargs):
-            setattr(self, attrs[i], args[i])
+        if cargs > 0:
+            attrs = ['id', 'width', 'height', 'x', 'y']
+            for i in range(cargs):
+                setattr(self, attrs[i], args[i])
+        else:
+            for k, v in kwargs.items():
+                setattr(self, k, v)

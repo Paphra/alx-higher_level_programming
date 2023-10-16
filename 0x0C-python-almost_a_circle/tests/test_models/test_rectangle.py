@@ -134,27 +134,11 @@ class TestRectangle(unittest.TestCase):
         from models.rectangle import Rectangle
         r = Rectangle(5, 3)
         expected = "#####\n#####\n#####\n"
-        saved = sys.stdout
-        try:
-            out = StringIO()
-            sys.stdout = out
-            r.display()
-            output = out.getvalue()
-            self.assertEqual(output, expected)
-        finally:
-            sys.stdout = saved
+        self.ioRun(r.display, expected)
         r.width = 4
         r.height = 5
         expected = "####\n####\n####\n####\n####\n"
-        saved = sys.stdout
-        try:
-            out = StringIO()
-            sys.stdout = out
-            r.display()
-            output = out.getvalue()
-            self.assertEqual(output, expected)
-        finally:
-            sys.stdout = saved
+        self.ioRun(r.display, expected)
 
     def test_str_magic_method(self):
         """Tests the output of the __str__ method
@@ -162,29 +146,13 @@ class TestRectangle(unittest.TestCase):
 
         from models.rectangle import Rectangle
         r = Rectangle(3, 2, 0, 0, 20)
-        expected = "[Rectangle] (20) 0/0 - 3/2"
-        saved = sys.stdout
-        try:
-            out = StringIO()
-            sys.stdout = out
-            print(r)
-            output = out.getvalue().strip()
-            self.assertEqual(output, expected)
-        finally:
-            sys.stdout = saved
+        expected = "[Rectangle] (20) 0/0 - 3/2\n"
+        self.ioRun(r, expected, p=True)
         r.id = 1.4
         r.width = 10
         r.y = 3
-        expected = '[Rectangle] (1.4) 0/3 - 10/2'
-        saved = sys.stdout
-        try:
-            out = StringIO()
-            sys.stdout = out
-            print(r)
-            output = out.getvalue().strip()
-            self.assertEqual(output, expected)
-        finally:
-            sys.stdout = saved
+        expected = '[Rectangle] (1.4) 0/3 - 10/2\n'
+        self.ioRun(r, expected, p=True)
 
     def test_display_with_xy(self):
         """Test how the xy are handled by the display method
@@ -193,22 +161,22 @@ class TestRectangle(unittest.TestCase):
         from models.rectangle import Rectangle
         r = Rectangle(4, 3, 2, 3)
         expected = "\n\n\n  ####\n  ####\n  ####\n"
-        saved = sys.stdout
-        try:
-            out = StringIO()
-            sys.stdout = out
-            r.display()
-            output = out.getvalue()
-            self.assertEqual(output, expected)
-        finally:
-            sys.stdout = saved
-
+        self.ioRun(r.display, expected)
         r.x = 3
         r.y = 0
         expected = "   ####\n   ####\n   ####\n"
         self.ioRun(r.display, expected)
 
     def ioRun(self, entity, expected, p=False):
+        """Run IO related tests
+
+        Args:
+            entity: some entity, either a callable something to print
+            expected: expected Output
+            p (bool): a flag to indicate whether the entity is to be printed
+                False - callable
+                True - printable
+        """
         saved = sys.stdout
         try:
             out = StringIO()
@@ -233,6 +201,22 @@ class TestRectangle(unittest.TestCase):
         self.ioRun(r, expected, p=True)
         r.update(1, 2, 3, 3, 7)
         expected = '[Rectangle] (1) 3/7 - 2/3\n'
+        self.ioRun(r, expected, p=True)
+
+    def test_update_2(self):
+        """Test update method that takes both *args and **kwargs
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(10, 10, 10, 10)
+        r.update(height=1)
+        expected = '[Rectangle] (1) 10/10 - 10/1\n'
+        self.ioRun(r, expected, p=True)
+        r.update(width=20, height=20, x=3)
+        expected = '[Rectangle] (1) 3/10 - 20/20\n'
+        self.ioRun(r, expected, p=True)
+        r.update(10, 20, width=25)
+        expected = '[Rectangle] (10) 3/10 - 20/20\n'
         self.ioRun(r, expected, p=True)
 
 
