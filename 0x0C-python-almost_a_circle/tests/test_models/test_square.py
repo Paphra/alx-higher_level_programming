@@ -128,8 +128,11 @@ class TestSquare(unittest.TestCase):
             {'id': 2, 'size': 2, 'x': 0, 'y': 0}
         ]
         Square.save_to_file([s1, s2])
+        tmp_file = 'Rectangle.json'
+        if os.path.exists(tmp_file):
+            os.remove(tmp_file)
         with self.assertRaises(FileNotFoundError):
-            with open('Rectangle.json', 'r') as file:
+            with open(tmp_file, 'r') as file:
                 pass
         f_name = '{}.json'.format(Square.__name__)
         with open(f_name, 'r') as f:
