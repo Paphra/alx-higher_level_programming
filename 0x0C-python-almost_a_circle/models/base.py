@@ -83,7 +83,7 @@ class Base:
             dummy = cls(2)
         elif cls.__name__ == 'Rectangle':
             dummy = cls(3, 2)
-        
+
         if dummy is not None:
             dummy.update(**dictionary)
         return dummy

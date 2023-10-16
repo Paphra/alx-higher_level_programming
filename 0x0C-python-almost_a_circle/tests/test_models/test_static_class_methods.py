@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """test_static_class_methods module
 
-Contains tests towards static and class methods associated with the 
+Contains tests towards static and class methods associated with the
 Base class
 """
 
 
 import unittest
-import os, sys
+import os
+import sys
 from importlib import reload
 from models import base, rectangle, square
 from tests.test_models.test_rectangle import TestRectangle as TR
