@@ -130,7 +130,7 @@ class TestRectangle(unittest.TestCase):
     def test_display(self):
         """Test the out of the Display function
         """
-        
+
         from models.rectangle import Rectangle
         r = Rectangle(5, 3)
         expected = "#####\n#####\n#####\n"
@@ -206,15 +206,34 @@ class TestRectangle(unittest.TestCase):
         r.x = 3
         r.y = 0
         expected = "   ####\n   ####\n   ####\n"
+        self.ioRun(r.display, expected)
+
+    def ioRun(self, entity, expected, p=False):
         saved = sys.stdout
         try:
             out = StringIO()
             sys.stdout = out
-            r.display()
+            if p:
+                print(entity)
+            else:
+                entity()
             output = out.getvalue()
             self.assertEqual(output, expected)
         finally:
             sys.stdout = saved
+
+    def test_update(self):
+        """Test update method of the rectangle
+        """
+
+        from models.rectangle import Rectangle
+        r = Rectangle(10, 10)
+        r.update(10, 10, 10, 3)
+        expected = '[Rectangle] (10) 3/0 - 10/10\n'
+        self.ioRun(r, expected, p=True)
+        r.update(1, 2, 3, 3, 7)
+        expected = '[Rectangle] (1) 3/7 - 2/3\n'
+        self.ioRun(r, expected, p=True)
 
 
 if __name__ == '__main__':
