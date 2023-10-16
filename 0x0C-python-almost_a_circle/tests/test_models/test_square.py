@@ -156,3 +156,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(json.loads(i_json), o_list)
         self.assertEqual(type(o_list), list)
         self.assertEqual(i_list, o_list)
+
+
+if __name__ == '__main__':
+    unittest.main()
