@@ -6,6 +6,7 @@ Contains the Base class for all other classes
 
 
 import json
+import os
 
 
 class Base:
@@ -49,9 +50,11 @@ class Base:
             list_objs: the list of objects being saved
         """
 
+        json_str = "[]"
         f_name = '{}.json'.format(cls.__name__)
-        list_dict = [obj.to_dictionary() for obj in list_objs]
-        json_str = Base.to_json_string(list_dict)
+        if list_objs is not None:
+            list_dict = [obj.to_dictionary() for obj in list_objs]
+            json_str = Base.to_json_string(list_dict)
         with open(f_name, 'w') as f:
             f.write(json_str)
 
@@ -87,3 +90,20 @@ class Base:
         if dummy is not None:
             dummy.update(**dictionary)
         return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """Load list of json objects from file
+        """
+
+        f_name = '{}.json'.format(cls.__name__)
+        if os.path.exists(f_name):
+            o_list = []
+            with open(f_name, 'r') as f:
+                contents = f.read()
+                json_fstr = cls.from_json_string(contents)
+                for jitem in json_fstr:
+                    o_list.append(cls.create(**jitem))
+            return o_list
+        else:
+            return []
