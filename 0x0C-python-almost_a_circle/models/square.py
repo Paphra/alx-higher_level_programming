@@ -31,3 +31,22 @@ class Square(Rectangle):
                 id=self.id, x=self.x, y=self.y,
                 size=self.width)
         return rep
+
+    @property
+    def size(self):
+        """Returns the size of the square, based on the Rectangle width
+        """
+
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """Sets the size of the Square
+
+        Args:
+            value (int): a required integer for size
+                sets it to width then height
+        """
+
+        self.width = value
+        self.height = value

@@ -25,7 +25,9 @@ class TestRectangle(unittest.TestCase):
         reload(rectangle)
 
     def test_rectangle_dict(self):
-        """Test the __dict__ contents
+        """===== Rectangle Tests =====
+
+        Test the __dict__ contents
         """
 
         from models.rectangle import Rectangle
