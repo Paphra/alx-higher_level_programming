@@ -7,6 +7,7 @@ Contains the Base class for all other classes
 
 import json
 import os
+import csv
 
 
 class Base:
@@ -58,6 +59,27 @@ class Base:
         with open(f_name, 'w') as f:
             f.write(json_str)
 
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Save the given list objects to file
+
+        Args:
+            cls: the class that is calling this function
+            list_objs: the list of objects being saved
+        """
+
+        headers = ['id', 'size', 'x', 'y']
+        if cls.__name__ == 'Rectangle':
+            headers = ['id', 'width', 'height', 'x', 'y']
+        f_name = '{}.csv'.format(cls.__name__)
+        with open(f_name, 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
+            if list_objs is not None:
+                list_dict = [obj.to_dictionary() for obj in list_objs]
+                for row in list_dict:
+                    writer.writerow(row)
+
     @staticmethod
     def from_json_string(json_string):
         """Convert from json string to the correct data type
@@ -104,6 +126,25 @@ class Base:
                 json_fstr = cls.from_json_string(contents)
                 for jitem in json_fstr:
                     o_list.append(cls.create(**jitem))
+            return o_list
+        else:
+            return []
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Load list of json objects from file
+        """
+
+        f_name = '{}.csv'.format(cls.__name__)
+        if os.path.exists(f_name):
+            o_list = []
+            with open(f_name, 'r') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    item = {}
+                    for k, v in row.items():
+                        item[k] = json.loads(v)
+                    o_list.append(cls.create(**item))
             return o_list
         else:
             return []
