@@ -37,7 +37,7 @@ class TestSquare(unittest.TestCase):
         expected = '[Square] (1) 0/0 - 20\n'
         TR.ioRun(self, s, expected, p=True)
         with self.assertRaises(TypeError, msg='width must be an integer'):
-            s = Square('2')
+            s = Square('1')
         with self.assertRaises(TypeError, msg='y must be an integer'):
             s = Square(2, 1, '3')
         with self.assertRaises(ValueError, msg='width must be > 0'):
@@ -50,6 +50,8 @@ class TestSquare(unittest.TestCase):
             s = Square(1, 2, -3)
         with self.assertRaises(ValueError, msg='width must be > 0'):
             s = Square(0)
+        s = Square(1, 2, 3)
+        TR.ioRun(self, s, '[Square] (8) 2/3 - 1\n', p=True)
 
     def test_square_updates_via_direct_assignment(self):
         """Tests the assignment to properties
