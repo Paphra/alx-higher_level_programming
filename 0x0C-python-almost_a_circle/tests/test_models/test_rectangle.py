@@ -99,6 +99,14 @@ class TestRectangle(unittest.TestCase):
             r.x = float('inf')
         r.id = 5.6
         self.assertEqual(r.id, 5.6)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            r = Rectangle('2', 3)
+        with self.assertRaises(TypeError, msg='height must be an integer'):
+            r = Rectangle(3, '2')
+        with self.assertRaises(TypeError, msg='x must be an integer'):
+            r = Rectangle(3, 2, '2')
+        with self.assertRaises(TypeError, msg='y must be an integer'):
+            r = Rectangle(3, 2, 2, '1')
 
     def test_values_checks(self):
         """Test the different value ranges
@@ -114,6 +122,18 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.id, 3.4)
         r.id = float('inf')
         self.assertEqual(r.id, float('inf'))
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            r = Rectangle(-1, 2)
+        with self.assertRaises(ValueError, msg='height must be > 0'):
+            r = Rectangle(2, -3)
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            r = Rectangle(0, 2)
+        with self.assertRaises(ValueError, msg='height must be > 0'):
+            r = Rectangle(2, 0)
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
+            r = Rectangle(2, 3, -2)
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
+            r = Rectangle(2, 3, 2, -1)
 
     def test_area(self):
         """Test the return of the correct area of the rect

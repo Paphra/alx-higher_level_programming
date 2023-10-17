@@ -36,6 +36,20 @@ class TestSquare(unittest.TestCase):
         s = Square(20)
         expected = '[Square] (1) 0/0 - 20\n'
         TR.ioRun(self, s, expected, p=True)
+        with self.assertRaises(TypeError, msg='width must be an integer'):
+            s = Square('2')
+        with self.assertRaises(TypeError, msg='y must be an integer'):
+            s = Square(2, 1, '3')
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            s = Square(-1)
+        s = Square(1, 2, 3, 4)
+        TR.ioRun(self, s, '[Square] (4) 2/3 - 1\n', p=True)
+        with self.assertRaises(ValueError, msg='x must be >= 0'):
+            s = Square(2, -2)
+        with self.assertRaises(ValueError, msg='y must be >= 0'):
+            s = Square(1, 2, -3)
+        with self.assertRaises(ValueError, msg='width must be > 0'):
+            s = Square(0)
 
     def test_square_updates_via_direct_assignment(self):
         """Tests the assignment to properties
@@ -141,6 +155,13 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(contents, json_string)
             self.assertEqual(json.loads(contents), exp_json)
         os.remove(f_name)
+        Square.save_to_file([])
+        with open(f_name, 'r') as f:
+            contents = f.read()
+            TR.ioRun(self, contents, '[]\n', p=True)
+            j = json.loads(contents)
+            self.assertEqual(type(j), list)
+            self.assertEqual(j, [])
 
     def test_base_from_json_string(self):
         """Tests from_json_string method of Base class
