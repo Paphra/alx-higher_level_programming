@@ -148,3 +148,10 @@ class Base:
             return o_list
         else:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw the shapes using turtle
+        """
+
+        pass
