@@ -21,10 +21,11 @@ if __name__ == '__main__':
 
     query = """
         SELECT * FROM states
-        WHERE BINARY name='{}'
+        WHERE BINARY name=%s
         ORDER BY states.id ASC
-    """.format(search)
-    cursor.execute(query)
+    """
+    params = (search, )
+    cursor.execute(query, params)
     results = cursor.fetchall()
     for state in results:
         print(state)
