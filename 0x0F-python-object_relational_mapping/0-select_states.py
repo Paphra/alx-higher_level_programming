@@ -21,3 +21,5 @@ if __name__ == '__main__':
     result = db.store_result()
     for state in result.fetch_row(maxrows=0):
         print(state)
+
+    db.close()
