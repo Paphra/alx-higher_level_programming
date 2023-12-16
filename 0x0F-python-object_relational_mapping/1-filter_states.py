@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" The selcect_states module
+""" The filter_states module
 
 Contains the script to select all states from the database
 """
