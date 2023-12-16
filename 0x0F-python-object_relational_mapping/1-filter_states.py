@@ -4,14 +4,15 @@
 Contains the script to select all states from the database
 """
 
+import sys
+import MySQLdb
+
 if __name__ == '__main__':
-    import sys
-    import MySQLdb
 
     host = 'localhost'
     port = 3306
 
-    user, password, database = sys.argv[1:]
+    user, password, database = sys.argv[1:4]
     db = MySQLdb.connect(
         host=host, port=port, user=user, password=password,
         database=database
