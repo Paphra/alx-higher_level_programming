@@ -25,8 +25,6 @@ if __name__ == '__main__':
     results = cursor.fetchall()
     for state in results:
         print(state)
-    if len(results) == 0:
-        print()
 
     cursor.close()
     db.close()
