@@ -9,8 +9,8 @@ from sqlalchemy.orm import sessionmaker
 
 
 def search_state(db_useranme, db_password, db, search):
-    """List all users
-    A function that prints all States
+    """search a state
+    A function that prints the id of the searched state
     """
     engine = create_engine(
         'mysql+mysqldb://{}:{}@localhost/{}'.format(
