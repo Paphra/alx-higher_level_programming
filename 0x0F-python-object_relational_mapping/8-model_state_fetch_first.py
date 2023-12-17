@@ -8,7 +8,7 @@ from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker
 
 
-def list_all_states(db_useranme, db_password, db):
+def first_state(db_useranme, db_password, db):
     """List all users
     A function that prints all States
     """
@@ -21,13 +21,14 @@ def list_all_states(db_useranme, db_password, db):
     Session = sessionmaker()
     Session.configure(bind=engine)
     session = Session()
-    for state in session.query(State).order_by(State.id).limit(1):
-        print('{}: {}'.format(state.id, state.name))
-    if (session.query(State).count()  == 0):
+    first_state = session.query(State).order_by(State.id).first()
+    if (first_state is not None):
+        print('{}: {}'.format(first_state.id, first_state.name))
+    else:
         print('Nothing')
 
 
 if __name__ == '__main__':
     username, password, database = sys.argv[1:4]
 
-    list_all_states(username, password, database)
+    first_state(username, password, database)
