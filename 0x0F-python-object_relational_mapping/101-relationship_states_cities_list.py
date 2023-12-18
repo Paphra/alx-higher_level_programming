@@ -25,14 +25,13 @@ def list_states_with_cities(db_user, db_pass, db_name):
     session = Session()
 
     states = session.query(
-        State, City).order_by(State.id).join(City).order_by(City.id).all()
+        State).order_by(
+            State.id).join(City).order_by(City.id).all()
 
-    prev_state = ''
-    for state, city in states:
-        if(prev_state != state.name):
-            print('{}: {}'.format(state.id, state.name))
-            prev_state = state.name
-        print('\t{}: {}'.format(city.id, city.name))
+    for state in states:
+        print('{}: {}'.format(state.id, state.name))
+        for city in state.cities:
+            print('\t{}: {}'.format(city.id, city.name))
 
 
 if __name__ == '__main__':
