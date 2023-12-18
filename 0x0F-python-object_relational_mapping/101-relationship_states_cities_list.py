@@ -24,14 +24,16 @@ def list_states_with_cities(db_user, db_pass, db_name):
     Session.configure(bind=engine)
     session = Session()
 
-    states = session.query(
-        State).order_by(
-            State.id).join(City).order_by(City.id).all()
-
-    for state in states:
-        print('{}: {}'.format(state.id, state.name))
-        for city in state.cities:
-            print('    {}: {}'.format(city.id, city.name))
+    results = session.query(
+        State, City).filter(State.id == City.state_id).order_by(
+            State.id, City.id).all()
+    current_id = None
+    for state, city in results:
+        if state.id != current_id:
+            print('{}: {}'.format(state.id, state.name))
+            current_id = state.id
+        print('    {}: {}'.format(city.id, city.name))
+    session.close()
 
 
 if __name__ == '__main__':
