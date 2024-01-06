@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """6-peak module
 
 For fnding the peak of the list of integers
