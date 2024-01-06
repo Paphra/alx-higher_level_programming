@@ -4,6 +4,7 @@
 For fnding the peak of the list of integers
 """
 
+
 def find_peak(list_of_integers):
     """find_peak function
 
