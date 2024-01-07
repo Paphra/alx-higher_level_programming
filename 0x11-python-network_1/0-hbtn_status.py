@@ -13,9 +13,9 @@ def fetch():
 
     with urllib.request.urlopen('https://alx-intranet.hbtn.io/status') as res:
         data = res.read()
-        print('\t- type: {}'.format(type(data)))
-        print('\t- content: {}'.format(data))
-        print('\t- utf8 content: {}'.format(data.decode()))
+        print('    - type: {}'.format(type(data)))
+        print('    - content: {}'.format(data))
+        print('    - utf8 content: {}'.format(data.decode()))
 
 
 if __name__ == '__main__':
