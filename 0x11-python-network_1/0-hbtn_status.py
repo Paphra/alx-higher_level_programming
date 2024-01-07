@@ -16,7 +16,7 @@ def fetch():
         print('Body response:')
         print('    - type: {}'.format(type(data)))
         print('    - content: {}'.format(data))
-        print('    - utf8 content: {}'.format(data.decode()))
+        print('    - utf8 content: {}'.format(data.decode('utf-8')))
 
 
 if __name__ == '__main__':
