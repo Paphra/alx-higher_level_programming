@@ -21,8 +21,8 @@ def do_request(url, letter):
     res = requests.post(url, data=data)
     try:
         json = res.json()
-        if len(json) > 0:
-            print('[{}] {}'.format())
+        if len(json.items) > 0:
+            print('[{}] {}'.format(json.get('id'), json.get('name')))
         else:
             print('No result')
     except ValueError:
