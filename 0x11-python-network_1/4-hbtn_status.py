@@ -12,9 +12,10 @@ def fetch():
     """
     url = 'https://alx-intranet.hbtn.io/status'
     res = requests.get(url)
+    content = res.content.decode('utf-8')
     print('Body response:')
-    print('\t- type: {}'.format(type(res.content)))
-    print('\t- content: {}'.format(res.content.decode('utf-8')))
+    print('\t- type: {}'.format(type(content)))
+    print('\t- content: {}'.format(content))
 
 
 if __name__ == '__main__':
