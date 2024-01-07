@@ -16,8 +16,8 @@ def do_request(url):
     res = requests.get(url)
     if res.status_code >= 400:
         print('Error code: {}'.format(res.status_code))
-    # else:
-        # print(res.content)
+    else:
+        print(res.content.decode('utf-8'))
 
 
 if __name__ == '__main__':
