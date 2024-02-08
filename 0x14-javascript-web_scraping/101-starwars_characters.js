@@ -15,22 +15,29 @@ request.get(apiUrl, (error, response, body) => {
       const film = JSON.parse(body);
       const characterUrls = film.characters;
 
-      characterUrls.forEach((url) => {
-        request.get(url, (error, response, body) => {
-          if (error) {
-            console.error(error);
-          } else if (response.statusCode !== 200) {
-            console.error('Failed to fetch character details.');
-          } else {
-            try {
-              const character = JSON.parse(body);
-              console.log(character.name);
-            } catch (parseError) {
-              console.error(parseError);
+      function getChar (index) {
+        if (index < characterUrls.length) {
+          request.get(characterUrls[index], (error, response, body) => {
+            if (error) {
+              console.error(error);
+              getChar(index + 1);
+            } else if (response.statusCode !== 200) {
+              console.error('Failed to fetch character details.');
+              getChar(index + 1);
+            } else {
+              try {
+                const character = JSON.parse(body);
+                console.log(character.name);
+                getChar(index + 1);
+              } catch (parseError) {
+                console.error(parseError);
+                getChar(index + 1);
+              }
             }
-          }
-        });
-      });
+          });
+        }
+      }
+      getChar(0);
     } catch (parseError) {
       console.error(parseError);
     }
